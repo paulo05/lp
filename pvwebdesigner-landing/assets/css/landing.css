@@ -217,7 +217,17 @@
 	background: var(--pvwd-gradient);
 	-webkit-background-clip: text;
 	background-clip: text;
-	color: transparent;
+	-webkit-text-fill-color: transparent;
+	color: var(--pvwd-accent);
+}
+
+@supports not ((-webkit-background-clip: text) or (background-clip: text)) {
+	.pvwd-gradient-text,
+	.pvwd-step-number {
+		background: none;
+		-webkit-text-fill-color: unset;
+		color: var(--pvwd-accent);
+	}
 }
 
 /* ---------- Hero ---------- */
@@ -301,12 +311,16 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	width: 100%;
+	margin: 0 auto;
 	gap: 14px;
+	text-align: center;
 }
 
 .pvwd-microtext {
 	font-size: 0.85rem;
 	color: var(--pvwd-text-muted);
+	text-align: center;
 }
 
 /* ---------- Premises ---------- */
@@ -431,7 +445,8 @@
 	background: var(--pvwd-gradient);
 	-webkit-background-clip: text;
 	background-clip: text;
-	color: transparent;
+	-webkit-text-fill-color: transparent;
+	color: var(--pvwd-accent);
 	display: block;
 	margin-bottom: 16px;
 }
@@ -475,10 +490,28 @@
 }
 
 .pvwd-case-card {
+	display: block;
 	background: var(--pvwd-surface);
 	border: 1px solid var(--pvwd-border);
 	border-radius: var(--pvwd-radius);
 	padding: 24px;
+	transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+}
+
+a.pvwd-case-card:hover {
+	transform: translateY(-4px);
+	border-color: rgba(34, 211, 238, 0.4);
+	background: var(--pvwd-surface-strong);
+}
+
+.pvwd-case-image {
+	display: block;
+	width: 100%;
+	height: 150px;
+	object-fit: cover;
+	border-radius: 12px;
+	margin-bottom: 18px;
+	background: var(--pvwd-surface-strong);
 }
 
 .pvwd-case-tag {
@@ -562,8 +595,16 @@
 	overflow: hidden;
 }
 
+.pvwd-cta-final .pvwd-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+}
+
 .pvwd-cta-final .pvwd-h2 {
 	margin: 0 auto 18px;
+	text-align: center;
 }
 
 .pvwd-cta-final-text {
@@ -571,6 +612,7 @@
 	max-width: 600px;
 	margin: 0 auto 36px;
 	font-size: 1.02rem;
+	text-align: center;
 }
 
 /* ---------- FAQ ---------- */
@@ -650,10 +692,16 @@
 
 /* ---------- Scroll reveal ---------- */
 
+/* Visível por padrão (sem JS ou antes do JS rodar). O JS adiciona
+   .pvwd-pre-reveal para animar a entrada apenas quando o observer
+   estiver ativo, evitando conteúdo escondido caso o script não rode. */
 .pvwd-reveal {
+	transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.pvwd-reveal.pvwd-pre-reveal {
 	opacity: 0;
 	transform: translateY(24px);
-	transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
 .pvwd-reveal.pvwd-in-view {
@@ -707,7 +755,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.pvwd-reveal {
+	.pvwd-reveal,
+	.pvwd-reveal.pvwd-pre-reveal {
 		opacity: 1;
 		transform: none;
 		transition: none;

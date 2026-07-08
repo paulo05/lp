@@ -2,6 +2,9 @@
 	'use strict';
 
 	document.addEventListener('DOMContentLoaded', function () {
+		// Conteúdo já é visível por padrão via CSS (progressive enhancement).
+		// Só ativamos a animação de entrada se o IntersectionObserver existir,
+		// para nunca deixar o conteúdo escondido caso o JS falhe.
 		var revealEls = document.querySelectorAll('.pvwd-reveal');
 
 		if ('IntersectionObserver' in window && revealEls.length) {
@@ -9,6 +12,7 @@
 				function (entries) {
 					entries.forEach(function (entry) {
 						if (entry.isIntersecting) {
+							entry.target.classList.remove('pvwd-pre-reveal');
 							entry.target.classList.add('pvwd-in-view');
 							observer.unobserve(entry.target);
 						}
@@ -18,11 +22,8 @@
 			);
 
 			revealEls.forEach(function (el) {
+				el.classList.add('pvwd-pre-reveal');
 				observer.observe(el);
-			});
-		} else {
-			revealEls.forEach(function (el) {
-				el.classList.add('pvwd-in-view');
 			});
 		}
 
