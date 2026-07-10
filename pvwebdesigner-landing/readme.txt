@@ -4,7 +4,7 @@ Tags: landing page, whatsapp, agencia, sites, automacoes
 Requires at least: 5.8
 Tested up to: 6.6
 Requires PHP: 7.4
-Stable tag: 1.2.0
+Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -17,8 +17,9 @@ Este plugin adiciona uma landing page pronta, com todas as 8 seções da copy da
 **Como usar**
 
 1. Ative o plugin — a landing já passa a ser exibida automaticamente, em tela cheia (sem header/footer do tema), na página inicial do site. Não é preciso criar página, template ou shortcode.
-2. Vá em *Ajustes > PVWD Landing* e configure o número de WhatsApp, a mensagem padrão e os dados de prova social (estatísticas e cases).
-3. Se preferir não usar a página inicial automática, desmarque a opção "Página inicial automática" nas configurações e use, em vez disso:
+2. Vá em *Ajustes > PVWD Landing* e configure o número de WhatsApp, a mensagem padrão e as estatísticas de prova social.
+3. Vá no menu **Cases (Portfólio)** para cadastrar, editar ou apagar os cases exibidos no bloco "Por que confiar" — cada case tem imagem destacada, título e resumo (excerto), além de um link opcional.
+4. Se preferir não usar a página inicial automática, desmarque a opção "Página inicial automática" nas configurações e use, em vez disso:
    - o shortcode `[pvwebdesigner_landing]` em qualquer página, **ou**
    - uma página nova com o template **"PV Web Designer - Landing"** selecionado em *Atributos da página*, para uma landing em tela cheia numa URL específica.
 
@@ -29,6 +30,11 @@ Este plugin adiciona uma landing page pronta, com todas as 8 seções da copy da
 3. Configure o WhatsApp em *Ajustes > PVWD Landing*.
 
 == Changelog ==
+
+= 1.3.0 =
+* Os cases do bloco "Por que confiar" agora são um post type próprio ("Cases (Portfólio)" no menu do admin), com imagem destacada, título e resumo (excerto) e link opcional — dá pra adicionar, editar e apagar quantos cases quiser pela tela padrão do WordPress, sem limite de 3.
+* Migração automática (uma única vez) dos cases que já estavam salvos em Ajustes > PVWD Landing, para não perder o que já tinha sido cadastrado.
+* Removidos os campos fixos de case das configurações; a tela agora só mostra um atalho para gerenciar os cases.
 
 = 1.2.0 =
 * A landing page agora é exibida automaticamente em tela cheia na página inicial do site, sem depender de shortcode ou de seleção manual de template. Comportamento pode ser desligado em *Ajustes > PVWD Landing* ("Página inicial automática").

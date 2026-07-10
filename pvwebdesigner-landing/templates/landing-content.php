@@ -152,31 +152,23 @@ $whatsapp_icon = '<svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true
 					<div class="pvwd-stat-card"><p><?php echo esc_html( $s['stat_systems'] ); ?></p></div>
 				</div>
 
-				<div class="pvwd-cases">
-					<?php for ( $i = 1; $i <= 3; $i++ ) : ?>
-						<?php
-						$case_title = $s[ "case{$i}_title" ];
-						$case_desc  = $s[ "case{$i}_desc" ];
-						$case_image = $s[ "case{$i}_image" ];
-						$case_url   = $s[ "case{$i}_url" ];
-
-						if ( empty( $case_title ) && empty( $case_desc ) ) {
-							continue;
-						}
-
-						$tag = $case_url ? 'a' : 'div';
-						?>
-						<<?php echo $tag; ?> class="pvwd-case-card"<?php echo $case_url ? ' href="' . esc_url( $case_url ) . '" target="_blank" rel="noopener noreferrer"' : ''; ?>>
-							<?php if ( $case_image ) : ?>
-								<img class="pvwd-case-image" src="<?php echo esc_url( $case_image ); ?>" alt="<?php echo esc_attr( $case_title ); ?>" loading="lazy" />
-							<?php else : ?>
-								<span class="pvwd-case-tag">Case</span>
-							<?php endif; ?>
-							<h3><?php echo esc_html( $case_title ); ?></h3>
-							<p><?php echo esc_html( $case_desc ); ?></p>
-						</<?php echo $tag; ?>>
-					<?php endfor; ?>
-				</div>
+				<?php $cases = PVWD_Cases::get_cases(); ?>
+				<?php if ( ! empty( $cases ) ) : ?>
+					<div class="pvwd-cases">
+						<?php foreach ( $cases as $case ) : ?>
+							<?php $tag = $case['url'] ? 'a' : 'div'; ?>
+							<<?php echo $tag; ?> class="pvwd-case-card"<?php echo $case['url'] ? ' href="' . esc_url( $case['url'] ) . '" target="_blank" rel="noopener noreferrer"' : ''; ?>>
+								<?php if ( $case['image'] ) : ?>
+									<img class="pvwd-case-image" src="<?php echo esc_url( $case['image'] ); ?>" alt="<?php echo esc_attr( $case['title'] ); ?>" loading="lazy" />
+								<?php else : ?>
+									<span class="pvwd-case-tag">Case</span>
+								<?php endif; ?>
+								<h3><?php echo esc_html( $case['title'] ); ?></h3>
+								<p><?php echo esc_html( $case['summary'] ); ?></p>
+							</<?php echo $tag; ?>>
+						<?php endforeach; ?>
+					</div>
+				<?php endif; ?>
 			</div>
 		</section>
 
