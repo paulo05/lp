@@ -2,8 +2,8 @@
 /**
  * Plugin Name: PV Web Designer - Landing Page
  * Plugin URI: https://pvwebdesigner.com.br
- * Description: Landing page completa para captação de leads da PV Web Designer (sites, sistemas e automações), com design dark/glass inspirado em portfólios de desenvolvedor. Use o shortcode [pvwebdesigner_landing] ou o template de página "PV Web Designer - Landing".
- * Version: 1.1.0
+ * Description: Landing page completa para captação de leads da PV Web Designer (sites, sistemas e automações), com design dark/glass inspirado em portfólios de desenvolvedor. Exibida automaticamente em tela cheia na página inicial do site (configurável em Ajustes > PVWD Landing); também disponível via shortcode [pvwebdesigner_landing] ou template de página "PV Web Designer - Landing".
+ * Version: 1.2.0
  * Requires at least: 5.8
  * Requires PHP: 7.4
  * Author: PV Web Designer
@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'PVWD_VERSION', '1.1.0' );
+define( 'PVWD_VERSION', '1.2.0' );
 define( 'PVWD_PATH', plugin_dir_path( __FILE__ ) );
 define( 'PVWD_URL', plugin_dir_url( __FILE__ ) );
 

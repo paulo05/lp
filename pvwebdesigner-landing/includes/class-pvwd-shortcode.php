@@ -12,10 +12,11 @@ class PVWD_Shortcode {
 
 	public function maybe_enqueue_assets() {
 		global $post;
-		$has_shortcode = is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, 'pvwebdesigner_landing' );
+		$has_shortcode    = is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, 'pvwebdesigner_landing' );
 		$is_pvwd_template = function_exists( 'is_page' ) && is_page() && 'pvwd-landing-template' === get_page_template_slug();
+		$is_auto_home     = PVWD_Template::is_auto_homepage();
 
-		if ( $has_shortcode || $is_pvwd_template ) {
+		if ( $has_shortcode || $is_pvwd_template || $is_auto_home ) {
 			$this->enqueue_assets();
 		}
 	}

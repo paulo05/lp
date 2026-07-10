@@ -16,6 +16,7 @@ class PVWD_Settings {
 
 	public static function get_defaults() {
 		return array(
+			'auto_homepage'     => '1',
 			'brand_name'        => 'pvwebdesigner',
 			'whatsapp_number'   => '5500000000000',
 			'whatsapp_message'  => 'Olá! Vim pelo site e quero entender como um site, sistema ou automação pode ajudar meu negócio.',
@@ -142,10 +143,19 @@ class PVWD_Settings {
 		?>
 		<div class="wrap">
 			<h1>PV Web Designer - Landing Page</h1>
-			<p>Configure o WhatsApp e os números de prova social exibidos na landing page. Use o shortcode <code>[pvwebdesigner_landing]</code> em qualquer página, ou escolha o template "PV Web Designer - Landing" nos Atributos da Página.</p>
+			<p>Por padrão, a landing page é exibida automaticamente em tela cheia na página inicial do site, sem precisar de shortcode nem de configurar nada. Desligue a opção abaixo se preferir usar o shortcode <code>[pvwebdesigner_landing]</code> em uma página específica, ou o template "PV Web Designer - Landing" nos Atributos da Página.</p>
 			<form method="post" action="options.php">
 				<?php settings_fields( 'pvwd_settings_group' ); ?>
 				<table class="form-table" role="presentation">
+					<tr>
+						<th scope="row">Página inicial automática</th>
+						<td>
+							<label>
+								<input type="checkbox" name="pvwd_settings[auto_homepage]" value="1" <?php checked( '1', $s['auto_homepage'] ); ?> />
+								Exibir esta landing page automaticamente, em tela cheia, como página inicial do site
+							</label>
+						</td>
+					</tr>
 					<tr>
 						<th scope="row"><label for="brand_name">Nome da marca</label></th>
 						<td><input type="text" id="brand_name" name="pvwd_settings[brand_name]" value="<?php echo esc_attr( $s['brand_name'] ); ?>" class="regular-text" /></td>
